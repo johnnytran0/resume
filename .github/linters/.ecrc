@@ -1,0 +1,19 @@
+{
+    "AllowedContentTypes": [],
+    "Debug": false,
+    "Disable":
+    {
+        "EndOfLine": false,
+        "IndentSize": false,
+        "Indentation": false,
+        "InsertFinalNewline": false,
+        "MaxLineLength": true,
+        "TrimTrailingWhitespace": false
+    },
+    "Exclude": [],
+    "IgnoreDefaults": false,
+    "NoColor": false,
+    "PassedFiles": [],
+    "SpacesAftertabs": false,
+    "Verbose": false
+}

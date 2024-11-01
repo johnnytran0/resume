@@ -1,0 +1,56 @@
+#!/usr/bin/make
+SHELL= /bin/sh
+TEX_FILENAME = resume-johnny-tran
+PDFLATEX_ENV = SOURCE_DATE_EPOCH=$$(git log -1 --no-patch --format=%ct)
+
+.PHONY: ${TEX_FILENAME}.pdf all brew clean clean-all docker docker-build docker-run lint
+
+all: output/${TEX_FILENAME}.pdf
+
+tex/glyphtounicode.tex:
+	wget https://raw.githubusercontent.com/TeX-Live/texlive-source/svn70897/texk/lcdf-typetools/lcdf-typetools-src/glyphtounicode.tex \
+		--directory-prefix=tex/
+
+output/$(TEX_FILENAME).pdf: tex/glyphtounicode.tex
+	${PDFLATEX_ENV} latexmk tex/$(TEX_FILENAME).tex
+
+brew:
+	brew install texlive
+
+clean:
+	latexmk -C tex/$(TEX_FILENAME).tex
+
+clean-all: clean
+	rm -rf .cache .texlive output
+
+docker: docker-build docker-run
+
+docker-build:
+	docker build --tag=pandoc/pdflatex .
+
+docker-run:
+	docker run -i --rm \
+		--network none \
+		-u "$(shell id -u):$(shell id -g)" \
+		-v ${PWD}:/data \
+		-e HOME=/data \
+		-e ${PDFLATEX_ENV} \
+		pandoc/pdflatex tex/$(TEX_FILENAME).tex
+
+# https://github.com/super-linter/super-linter/issues/5070#issuecomment-1885881566
+# https://github.com/super-linter/super-linter/issues/5070#issuecomment-2058901647
+lint:
+	docker run \
+		--platform linux/amd64 \
+		-e DEFAULT_BRANCH=main \
+		-e IGNORE_GITIGNORED_FILES=true \
+		-e RUN_LOCAL=true \
+		-e SHELL=/bin/bash \
+		-e VALIDATE_MARKDOWN_PRETTIER: false
+		-e MARKDOWN_CONFIG_FILE=.markdownlint.json \
+		-e NATURAL_LANGUAGE_CONFIG_FILE=.textlintrc.json \
+		-v ${PWD}:/tmp/lint \
+		ghcr.io/super-linter/super-linter:slim-v7.1.0
+
+md:
+	pandoc -s --to=plain --wrap=none tex/${TEX_FILENAME}.tex -o output/${TEX_FILENAME}.md

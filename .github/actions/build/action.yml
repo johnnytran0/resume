@@ -1,0 +1,32 @@
+---
+name: "Build LaTex artifacts"
+description: "converts *.tex to *.pdf"
+runs:
+  using: "composite"
+  steps:
+    - name: Set source date to last commiter date for reproducible builds
+      shell: bash
+      run: |
+        echo "SOURCE_DATE_EPOCH=$(git log -1 --no-patch --format=%ct)" >> $GITHUB_ENV
+    - uses: actions/checkout@v4
+      with:
+        repository: TeX-Live/texlive-source
+        path: TeX-Live
+        ref: svn70897
+        sparse-checkout: |
+          texk/lcdf-typetools/lcdf-typetools-src/glyphtounicode.tex
+        sparse-checkout-cone-mode: false
+    - name: Move glphytounicode
+      shell: bash
+      run: |
+        mv "$GITHUB_WORKSPACE/TeX-Live/texk/lcdf-typetools/lcdf-typetools-src/glyphtounicode.tex" "$GITHUB_WORKSPACE/tex"
+    - uses: xu-cheng/latex-action@v3
+      with:
+        args: ""
+        docker_image: ghcr.io/xu-cheng/texlive-full:20240701
+        root_file: tex/resume*.tex
+    - uses: actions/upload-artifact@v4
+      with:
+        name: ${{ github.repository_owner }}-resume-artifact-${{ github.sha }}
+        path: "output/*.pdf"
+        if-no-files-found: error

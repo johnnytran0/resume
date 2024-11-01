@@ -1,0 +1,40 @@
+---
+name: Lint
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  build:
+    name: Lint
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          path: TeX-Live
+          ref: svn70897
+          repository: TeX-Live/texlive-source
+          sparse-checkout: texk/lcdf-typetools/lcdf-typetools-src/glyphtounicode.tex
+          sparse-checkout-cone-mode: false
+      - name: Move glphytounicode.tex to GitHub workspace
+        shell: bash
+        run: |
+          mv "$GITHUB_WORKSPACE/TeX-Live/texk/lcdf-typetools/lcdf-typetools-src/glyphtounicode.tex" "$GITHUB_WORKSPACE"
+      - uses: super-linter/super-linter/slim@v7.1.0
+        env:
+          VALIDATE_MARKDOWN_PRETTIER: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MARKDOWN_CONFIG_FILE: .markdownlint.json
+          NATURAL_LANGUAGE_CONFIG_FILE: .textlintrc.json
+          VALIDATE_ALL_CODEBASE: false

@@ -1,0 +1,7 @@
+*         text=auto
+
+*.docx    diff=astextplain
+*.md      text
+*.pdf     diff=astextplain
+*.tex     text
+*.txt     text
