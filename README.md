@@ -6,6 +6,12 @@ This GitHub repository automates the customization and compilation of my resume 
 
 I've maintained my resume in LaTeX since my university days and chose to leverage GitHub Actions to improve its reproducibility and portability.
 
+## Preview
+
+A direct link to download my resume can found [HERE](https://github.com/johnnytran0/resume/releases/latest/download/resume-johnny-tran.pdf).
+
+Preview in the browser using Google Docs by clicking [HERE](https://docs.google.com/viewer?url=https://github.com/johnnytran0/resume/releases/latest/download/resume-johnny-tran.pdf).
+
 ## Getting Started
 
 Install LaTeX and other platform specific dependencies to compile `tex/resume*.tex` and output a PDF file to `output/resume*.pdf`.
