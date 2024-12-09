@@ -1,49 +1,30 @@
 \documentclass[letterpaper,10pt]{article}
 
-\usepackage{latexsym}
-\usepackage[empty]{fullpage}
-\usepackage{titlesec}
-\usepackage{marvosym}
-\usepackage[usenames,dvipsnames]{color}
-\usepackage{verbatim}
-\usepackage{enumitem}
-\usepackage[hidelinks]{hyperref}
-\usepackage{fancyhdr}
 \usepackage[english]{babel}
-\usepackage{tabularx}
-\usepackage{lipsum}
-\usepackage[default]{sourcesanspro}
 \usepackage{catchfile}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[empty]{fullpage}
+\usepackage[top=0.5in,bottom=0.5in,left=0.5in,right=0.5in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{latexsym}
+\usepackage{marvosym}
+\usepackage[default]{sourcesanspro}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{verbatim}
 \usepackage{xstring}
 
 \input{glyphtounicode}
 
-\pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
-\fancyfoot{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-
-% Adjust margins
-\addtolength{\oddsidemargin}{-0.5in}
-\addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{0.5in}
-\addtolength{\topmargin}{-0.5in}
-\addtolength{\textheight}{0.5in}
-
-\urlstyle{same}
-
-\raggedbottom{}
-\raggedright{}
-\setlength{\tabcolsep}{0in}
-\setlipsum{language=english}
-
+% Ensures PDF is machine-readable and parsable for ATS
 \pdfgentounicode=1
-% omit PDF metadata for reproducible builds
+% omits PDF metadata for reproducible builds
 \pdfinfoomitdate=1
 \pdftrailerid{}
 
-% parse .git metadata and populates PDF info
+% parses .git metadata and populates PDF info
 \CatchFileDef{\headfull}{.git/HEAD}{}
 \StrGobbleRight{\headfull}{1}[\head]
 \StrBehind[2]{\head}{/}[\branch]
@@ -66,152 +47,151 @@
   }
 }
 
-% Sections formatting
-\titleformat{\section}
-  {\vspace{-4pt}\scshape\raggedright\large}
-  {}{0em}{}[\color{black}\titlerule{}\vspace{-5pt}]
-
-% Ensure that generate pdf is machine readable/ATS parsable
-\pdfgentounicode=1
-
-% Custom commands
-\newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-4pt}}
-  }
-}
-
-\newcommand{\eduSubheading}[4]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} (\textit{\small#3 --- \textit{\small #4}})& #2 \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeSubSubheading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeProjectHeading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\titleformat{\section}{\vspace{-12pt}\scshape\raggedright\large}{}{0em}{}[\color{black}\titlerule{}\vspace{-5pt}]
 
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.10in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-7pt}}
+% Bigger than \huge. skip should be 1.2 times size
+\newcommand\Yuge{\fontsize{24}{30}\selectfont}
+
+\newcommand{\subsectionStart}{\begin{itemize}[leftmargin=0pt, label={}]}
+\newcommand{\subsectionEnd}{\end{itemize}}
+
+\newcommand{\experienceHeading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} (\textit{\small#3 --- \textit{\small #4}})& #2 \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\eduHeading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.99\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-2pt}
+}
+\newcommand{\experienceStart}{\begin{itemize}[leftmargin=16pt, rightmargin=8pt]}
+\newcommand{\experienceEnd}{\end{itemize}\vspace{-7pt}}
+\newcommand{\experience}[1]{\item\small{{#1 \vspace{-0.5pt}}}}
+\newcommand{\skills}[2]{\item\small{{\textbf{#1}: #2\vspace{-6pt}}}}
+
+\raggedright{}
 
 \begin{document}
 
 \begin{center}
-    \textbf{\Huge \scshape Johnny Tran} \\ \vspace{1pt}
-    \small San Diego, CA $|$
-    \href{https://linkedin.com/in/johnny-tran-40a11616}{\underline{linkedin.com/in/johnny-tran-40a11616}} $|$
-    \href{https://github.com/johnnytran0}{\underline{github.com/johnnytran0}}
+    \textbf{\Yuge{Johnny Tran}} \\ \vspace{4pt}
+    \href{mailto:jtrandev@gmail.com}{jtrandev@gmail.com} $|$
+    (619) 940--4271 $|$
+    San Diego, CA 92122 $|$
+    \href{https://linkedin.com/in/johnnytran0}{linkedin.com/in/johnnytran0} $|$
+    \href{https://github.com/johnnytran0}{github.com/johnnytran0}
 \end{center}
 
 \section{Experience}
-  \resumeSubHeadingListStart
-    \resumeSubheading{Software Engineering Manager}
-      {12/2021--09/2024}
-      {UKG}
-      {Hybrid Remote}
-    \resumeItemListStart
-      \resumeItem{Led and managed a diverse distributed team of 7+ engineers to successfully deliver new features and expand talent management offerings in UKG Pro Performance and Coaching on web and mobile platforms, collaborated hands-on with the team while maintaining high technical standards and oversaw the entire software development lifecycle, from inception to release and ongoing support.}
-      \resumeItem{Collaborated closely with cross-functional teams, including engineering, product management, quality assurance, architecture, internal partner platforms, and operations leaders, leveraging scaled agile framework (SAFe) methodology to overcome project challenges, meet critical milestones, and execute a balanced roadmap that consistently raised the standard for availability, quality, resiliency, security, and performance.}
-      \resumeItem{Owned production incidents and urgent defects by focusing capacity to mitigate, debug, and swiftly resolve urgent issues that impact service quality and availability, published detailed root cause analysis and postmortems to customer support knowledge base, reduced incident mitigation time to minutes by actioning improvements to observability and serviceability capabilities.}
-      \resumeItem{Hired, mentored, and coached engineers at all levels and built trust through regular 1:1 meetings, provided actionable feedback, aligned with OKRs, fostered transparency, promoted growth mindset, encouraged teams to experiment with new technologies, and established a culture of continuous improvement.}
-    \resumeItemListEnd
+\subsectionStart{}
+  \experienceHeading{Software Engineering Manager}
+    {Dec. 2021 --- Sept. 2024}
+    {UKG}
+    {Hybrid Remote}
+  \experienceStart{}
+    \experience{
+      Led a high-performing distributed team of 7+ engineers to release quarterly roadmap product  deliverables and maintain enterprise SaaS systems for  Conversations \& Feedback modules in the UKG Pro Performance \& Coaching product suite.
+    }
+    \experience{
+      Facilitated collaboration leveraging SAFe Agile methodologies to align product vision across cross-functional teams, including Architecture, Engineering, Operations, Product, Program Management, Quality, and key internal stakeholders, planned product roadmap amid ambiguities, and overcame project challenges to meet critical milestones.
+    }
+    \experience{
+      Oversaw the planning and execution of all facets of the software development lifecycle (SDLC), collaborated hands-on with teammates during architectural debates, design discussions, code reviews, and quality assurance, assessed tradeoffs of major technical decisions, and enforced software development best practices to ensure high-quality code, implemented using Angular, GraphQL, Docker, Java, Javalin, Kafka, Kotlin, Kubernetes, Looker, MongoDB, MySQL, and Spring Boot.
+    }
+    \experience{
+      Spearheaded long-term engineering initiatives to transition microservices architecture from Axon Framework CQRS to a scalable Outbox pattern implemented using internal Kotlin SDK, reducing system complexity and service overhead by 25\%.
+    }
+    \experience{
+      Triaged production defects, managed incident resolution with SREs, performed root cause analysis, and actioned monitoring changes in DataDog and Grafana, reducing mean response time for major PagerDuty incidents to less than 30 minutes.
+    }
+    \experience{
+      Hired, mentored, and coached engineers at all levels, conducted regular 1:1 meetings, provided actionable performance feedback, aligned role-specific goals with company OKRs, supported team members' career development by growing technical skills and leadership capabilities, and fostered a team culture of continuous improvement.
+    }
+  \experienceEnd{}
 
-    \resumeSubheading{Principal Software Engineer}
-      {06/2021--12/2021}
-      {UKG}
-      {Remote}
-    \resumeItemListStart
-      \resumeItem{Architected and led technical initiatives between multiple teams to significantly refactor and automate provisioning UKG Pro Coaching and Development to new Google Cloud Platform infrastructure, achieved business goals of providing scalable, global, cloud-based services to strategic markets.}
-      \resumeItem{Collaborated with architects, tech leads, and subject-matter experts to evaluate and implement cutting-edge technologies, developer tools, and architectural guardrails to improve team velocity and platform capabilities, applied technical expertise to identify and build consensus for high-value technical initiatives that would fuel growth and improve development capacity.}
-    \resumeItemListEnd
+  \experienceHeading{Principal Software Engineer}
+    {June 2021 --- Dec 2021}
+    {UKG}
+    {Remote}
+  \experienceStart{}
+    \experience{
+      Designed and implemented infrastructure as code tooling to automate, manage, and provision UKG Pro Coaching \& Development services using Kubernetes and Google Cloud Platform, achieving production-readiness of the first US region.
+    }
+    \experience{
+      Accelerated product release capabilities by establishing DevOps guardrails for continuous delivery, switched CI/CD branching strategy from Gitflow to trunk-based development, adopted feature flagging via LaunchDarkly SDK, improved change lead time from weeks to days, and increased deployment frequency from quarterly to biweekly.
+    }
+  \experienceEnd{}
 
-    \resumeSubheading{Staff Software Engineer}
-      {01/2021--06/2021}
-      {UKG}
-      {Remote}
-    \resumeItemListStart
-      \resumeItem{Executed documentation initiatives to improve knowledge base, accelerate the continuous delivery process for software releases, and foster DevOps practices as the team grew from 10 to 25+ distributed engineers spanning multiple time zones, contributed to productive onboarding of new hires and additional capacity to deliver on roadmap priorities with high-quality.}
-      \resumeItem{Led product and engineering teams in architecture and design reviews for stakeholders to provide technical feedback, promote coding best practices, align with business requirements, and enforce standards that improved lead time to production by 25\% \& reduced integration change failure by 50\%.}
-    \resumeItemListEnd
+  \experienceHeading{Staff Software Engineer}
+    {Jan. 2021 --- June 2021}
+    {UKG}
+    {Remote}
+  \experienceStart{}
+    \experience{
+      Drove initiatives to improve developer knowledge base quality and build a self-service documentation portal as the team scaled from 10 to 25+ distributed engineers spanning multiple time zones, improved time to productivity for onboarding new hires to less than 4 weeks by consolidating technical content on Backstage, Confluence, LucidCharts, and Microsoft SharePoint.
+    }
+    \experience{
+      Coordinated Engineering, Product, Operations, and Quality leads to plan, prioritize, and task Jira Epics to meet functional and non-functional requirements, communicated estimates, issues, and dependencies between stakeholder teams, resulting in a 50\% reduction in integration change failures over two quarters.
+    }
+  \experienceEnd{}
 
-    \resumeSubheading{Lead Software Engineer}
-      {12/2018--01/2021}
-      {UKG}
-      {Remote}
-    \resumeItemListStart
-      \resumeItem{Led cross-functional distributed engineering teams of 6+ using Kanban methodology to decouple from UKG Pro Core monolith and deliver new features in UKG Pro Coaching and Development on microservices-based platform, managed work in-progress, analyzed flow metrics, forecast future deliverables, and helped the team make daily improvements to cycle time predictability.}
-    \resumeItemListEnd
+  \experienceHeading{Lead Software Engineer}
+    {Dec. 2018 --- Jan. 2021}
+    {UKG}
+    {Remote}
+  \experienceStart{}
+    \experience{
+      Led cross-functional distributed engineering teams of 7+ using Kanban methodology to decouple Continuous Feedback features from Employee Voice Python2 monolith into microservices platform, successfully orchestrated cut-over migration for over 100 tenants, implemented using Angular, Axon, Cloud Foundry, GraphQL, Java, MongoDB, RabbitMQ, and Spring Boot.
+    }
+  \experienceEnd{}
 
-    \resumeSubheading{Senior Software Engineer}
-      {11/2017--12/2018}
-      {Ultimate Software}
-      {Remote}
-    \resumeItemListStart
-      \resumeItem{Partnered with Product, Data Scientists, and Data Platform teams to successfully deliver employee retention risk dashboard and ML predictive model trained on UltiPro employment data, using Apache Hadoop stack, NumPy, Pandas, Python, \& scikit-learn.}
-    \resumeItemListEnd
+  \experienceHeading{Senior Software Engineer}
+    {Sept. 2016 --- Dec. 2018}
+    {Ultimate Software}
+    {Remote}
+  \experienceStart{}
+    \experience{
+      Collaborated with Product, Data Scientists, and Data Platform teams to launch an employee retention risk dashboard and ML predictive model trained on UltiPro employment data using Apache Hadoop, NumPy, Pandas, Python, and scikit-learn.
+    }
+    \experience{
+      Engaged with Product and Engineering stakeholders using Domain-Driven Design approaches to define bounded contexts and aggregates for new UltiPro Payroll and People features, applied 12-Factor App principles to implement 10+ microservices using CQRS and event-sourcing patterns, and reduced system complexity by 30\% through business-aligned domain modeling.
+    }
+  \experienceEnd{}
 
-    \resumeSubheading{Software Engineer}
-      {09/2016--11/2017}
-      {Ultimate Software}
-      {Remote}
-    \resumeItemListStart
-      \resumeItem{Engaged with product and technical stakeholders using Domain-Driven Design approaches to define bounded contexts and aggregates for new UltiPro Payroll and People features, applied 12-Factor App principles to implement 10+ microservices using CQRS and event-sourcing patterns, reduced system complexity by 30\% through efficient business-aligned domain modeling.}
-    \resumeItemListEnd
-
-    \resumeSubheading{Software Engineer}
-      {04/2014--09/2016}
-      {Teradata}
-      {Rancho Bernardo, CA}
-    \resumeItemListStart
-      \resumeItem{Worked with Scrum team to design and implement new Teradata Viewpoint portlets, built responsive web/mobile UIs and RESTful API controllers with Spring MVC for dispatching query requests and executing queries on Teradata Database systems.}
-    \resumeItemListEnd
-  \resumeSubHeadingListEnd
+  \experienceHeading{Software Engineer}
+    {April 2014 --- Sept. 2016}
+    {Teradata}
+    {Rancho Bernardo, CA}
+  \experienceStart{}
+    \experience{
+      Implemented Teradata Viewpoint portlets using Scrum methodology, built responsive web/mobile UIs with Backbone.js and Spring MVC, and designed RESTful API controllers for monitoring system health and query log of Teradata Database systems.
+    }
+  \experienceEnd{}
+\subsectionEnd{}
 
 \section{Education}
-  \resumeSubHeadingListStart
-    \eduSubheading{University of California, San Diego}
-      {San Diego, CA}
-      {Computer Engineering, Bachelor of Science}
-      {2009 --- 2014}
-  \resumeSubHeadingListEnd
+\subsectionStart{}
+  \eduHeading{University of California, San Diego}
+    {San Diego, CA}
+    {Computer Engineering, Bachelor of Science}
+    {2009 --- 2014}
+\subsectionEnd{}
 
 \section{Technical Skills}
-  \begin{itemize}[leftmargin=0.10in, label={}]
-    \small{
-      \item{
-        \textbf{Languages}{: Java, Kotlin, Python, JavaScript, Typescript, HTML/CSS, Markdown, Bash} \\
-        \textbf{Databases}{: MongoDB, MySQL, PostgreSQL, Redis, Elasticsearch} \\
-        \textbf{Messaging}{: RabbitMQ, Kafka} \\
-        \textbf{Frameworks}{: Angular, Node.js, Spring Boot, Javalin} \\
-        \textbf{Developer Tools}{: Ansible, Bitbucket, Confluence, Concourse, Docker, Gradle, Git, GitHub, GitHub Actions, Google Cloud Platform, JetBrains IDEs, JIRA, Kubernetes (k8s), Linux, Maven, Microsoft 365, Postman, RESTful APIs, Slack, TeamCity} \\
-        \textbf{Misc.}{: DataDog, Grafana, GraphQL, InfluxDB, Kibana, LaunchDarkly, Looker, PagerDuty, Prometheus}
-      }
-    }
-  \end{itemize}
+\begin{itemize}[leftmargin=6pt, rightmargin=8pt, label={}]
+  \skills{Programming Languages}
+    {Java, JavaScript/TypeScript, Kotlin, Python}
+  \skills{Databases}
+    {Elasticsearch, InfluxDB, MongoDB, MySQL, PostgreSQL, Redis}
+  \skills{Technologies}
+    {Angular, Ansible, Apache Kafka, Bash, Bitbucket, Cloud Foundry, Concourse, Confluence, Cypress, DataDog, Docker, Gatling, Git, GitHub, GitHub Actions, Google Cloud Platform, Gradle, Grafana, GraphQL, HTML/CSS,  Jasmine, Javalin, JetBrains IDEs, Jira, JMeter, JUnit, Kibana, Kubernetes (k8s), LaTeX, LaunchDarkly, Linux/Unix, Looker, LucidCharts, Markdown, Maven, Microsoft 365, Node.js, OAuth2, OIDC, PagerDuty, PlantUML, Postman, Prometheus, RabbitMQ, Slack, SonarQube, Spring Boot, Spring Framework, TeamCity, TestRail}
+\end{itemize}
 
 \end{document}
