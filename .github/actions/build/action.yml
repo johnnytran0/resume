@@ -1,6 +1,6 @@
 ---
 name: "Build LaTex artifacts"
-description: "converts *.tex to *.pdf"
+description: "converts *.tex to *.{pdf,png}"
 runs:
   using: "composite"
   steps:
@@ -25,8 +25,14 @@ runs:
         args: ""
         docker_image: ghcr.io/xu-cheng/texlive-full:20240701
         root_file: tex/resume*.tex
+    - name: Convert PDF to PNG
+      shell: bash
+      run: |
+        sudo make output/resume-johnny-tran.png
     - uses: actions/upload-artifact@v4
       with:
         name: ${{ github.repository_owner }}-resume-artifact-${{ github.sha }}
-        path: "output/*.pdf"
+        path: |
+          output/resume*.pdf
+          output/resume*.png
         if-no-files-found: error
