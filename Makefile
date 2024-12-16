@@ -3,7 +3,7 @@ SHELL= /bin/sh
 TEX_FILENAME = resume-johnny-tran
 PDFLATEX_ENV = SOURCE_DATE_EPOCH=$$(git log -1 --no-patch --format=%ct)
 
-.PHONY: ${TEX_FILENAME}.pdf all brew clean clean-all docker docker-build docker-run lint
+.PHONY: all brew clean clean-all docker docker-build docker-run lint
 
 all: output/${TEX_FILENAME}.pdf
 
@@ -15,7 +15,7 @@ output/$(TEX_FILENAME).pdf: tex/glyphtounicode.tex
 	${PDFLATEX_ENV} latexmk tex/$(TEX_FILENAME).tex
 
 brew:
-	brew install texlive
+	brew install ghostscript imagemagick texlive
 
 clean:
 	latexmk -C tex/$(TEX_FILENAME).tex
@@ -52,5 +52,17 @@ lint:
 		-v ${PWD}:/tmp/lint \
 		ghcr.io/super-linter/super-linter:slim-v7.1.0
 
-md:
+output:
+	mkdir -p output
+
+output/${TEX_FILENAME}.md: output tex/glyphtounicode.tex
 	pandoc -s --to=plain --wrap=none tex/${TEX_FILENAME}.tex -o output/${TEX_FILENAME}.md
+
+output/${TEX_FILENAME}.png: output output/${TEX_FILENAME}.pdf
+	convert \
+		-density 600 \
+		-background white \
+		-alpha background \
+		-alpha off \
+		-quality 100 \
+		output/${TEX_FILENAME}.pdf output/${TEX_FILENAME}.png
