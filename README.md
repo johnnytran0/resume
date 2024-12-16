@@ -37,7 +37,7 @@ make docker
 
 #### GitHub Actions
 
-* [xu-cheng/latex-action](https://github.com/xu-cheng/latex-action)
+- [xu-cheng/latex-action](https://github.com/xu-cheng/latex-action)
 
 #### MacOS
 
@@ -55,17 +55,17 @@ make brew && make
 make lint
 ```
 
-* [super-linter/super-linter](https://github.com/super-linter/super-linter)
-    * [ChkTeX](https://www.nongnu.org/chktex/ChkTeX.pdf)
-    * [gitleaks/gitleaks](https://github.com/gitleaks/gitleaks)
-    * [textlint/textlint](https://github.com/textlint/textlint)
-        * [sapegin/textlint-rule-terminology](https://github.com/sapegin/textlint-rule-terminology)
+- [super-linter/super-linter](https://github.com/super-linter/super-linter)
+    - [ChkTeX](https://www.nongnu.org/chktex/ChkTeX.pdf)
+    - [gitleaks/gitleaks](https://github.com/gitleaks/gitleaks)
+    - [textlint/textlint](https://github.com/textlint/textlint)
+        - [sapegin/textlint-rule-terminology](https://github.com/sapegin/textlint-rule-terminology)
 
 ### Writing Assistance
 
-* [Grammarly](https://app.grammarly.com/)
-    * [What are the limitations when using Grammarly?](https://support.grammarly.com/hc/en-us/articles/115000090911-What-are-the-limitations-when-using-Grammarly)
-        * > Supported document types are Microsoft Word (.doc, .docx), OpenOffice (.odt), .txt, and .rtf.
+- [Grammarly](https://app.grammarly.com/)
+    - [What are the limitations when using Grammarly?](https://support.grammarly.com/hc/en-us/articles/115000090911-What-are-the-limitations-when-using-Grammarly)
+        - > Supported document types are Microsoft Word (.doc, .docx), OpenOffice (.odt), .txt, and .rtf.
 
 ## Resources
 
@@ -73,13 +73,13 @@ make lint
 
 #### LinkedIn
 
-* [Upload your resume to LinkedIn](https://www.linkedin.com/help/linkedin/answer/a510363)
+- [Upload your resume to LinkedIn](https://www.linkedin.com/help/linkedin/answer/a510363)
 
 #### Indeed
 
-* [How To Upload Your Resume to Indeed](https://www.indeed.com/career-advice/resumes-cover-letters/how-to-upload-resume-to-indeed)
-    * "Your resume may look good to a human but may not be parsed accurately by the software. See results below of how a standard ATS software interprets your resume."
-        * [Instant Resume Report](https://www.indeed.com/career-services/resume-help/automated-report/report)
+- [How To Upload Your Resume to Indeed](https://www.indeed.com/career-advice/resumes-cover-letters/how-to-upload-resume-to-indeed)
+    - "Your resume may look good to a human but may not be parsed accurately by the software. See results below of how a standard ATS software interprets your resume."
+        - [Instant Resume Report](https://www.indeed.com/career-services/resume-help/automated-report/report)
 
 ### Application Tracking Systems (ATS)?
 
@@ -91,4 +91,4 @@ Resume Parsers are software applications within an ATS that have the capability 
 
 ## References
 
-* [jakegut/resume](https://github.com/jakegut/resume)
+- [jakegut/resume](https://github.com/jakegut/resume)
