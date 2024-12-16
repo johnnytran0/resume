@@ -39,15 +39,18 @@
 \AfterPreamble{
   \hypersetup{
     pdfauthor={Johnny Tran},
+    pdfcreator={Johnny Tran},
     pdfinfo={
       GitBranch={\branch},
-      GitCommit={\commit}
+      GitCommit={\commit},
+      GitSource={https://github.com/johnnytran0/resume}
     },
-    pdftitle={Resume}
+    pdfsubject={This is the professional résumé of Johnny Tran.},
+    pdftitle={Résumé --- Johnny Tran}
   }
 }
 
-\titleformat{\section}{\vspace{-12pt}\scshape\raggedright\large}{}{0em}{}[\color{black}\titlerule{}\vspace{-5pt}]
+\titleformat{\section}{\vspace{-10pt}\scshape\raggedright\large}{}{0em}{}[\color{black}\titlerule{}\vspace{-5pt}]
 
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
@@ -58,14 +61,14 @@
 \newcommand{\subsectionEnd}{\end{itemize}}
 
 \newcommand{\experienceHeading}[4]{
-  \vspace{-2pt}\item
+  \item
     \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} (\textit{\small#3 --- \textit{\small #4}})& #2 \\
-    \end{tabular*}\vspace{-6pt}
+    \end{tabular*}\vspace{-4pt}
 }
 
 \newcommand{\eduHeading}[4]{
-  \vspace{-2pt}\item
+  \item
     \begin{tabular*}{0.99\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
@@ -97,22 +100,28 @@
     {Hybrid Remote}
   \experienceStart{}
     \experience{
-      Led a high-performing distributed team of 7+ engineers to release quarterly roadmap product  deliverables and maintain enterprise SaaS systems for  Conversations \& Feedback modules in the UKG Pro Performance \& Coaching product suite.
+      Led a high-performing distributed team of 7+ software and quality engineers to release quarterly roadmap product deliverables and maintain enterprise SaaS systems for  Conversations \& Feedback modules in the UKG Pro Performance \& Coaching product suite.
     }
     \experience{
-      Facilitated collaboration leveraging SAFe Agile methodologies to align product vision across cross-functional teams, including Architecture, Engineering, Operations, Product, Program Management, Quality, and key internal stakeholders, planned product roadmap amid ambiguities, and overcame project challenges to meet critical milestones.
+      Directed end-to-end planning and execution of the software development lifecycle (SDLC) for multiple Epics, collaborated hands-on with engineers to assess and refine major technical decisions, improving team velocity by 15\% over two program increments.
     }
     \experience{
-      Oversaw the planning and execution of all facets of the software development lifecycle (SDLC), collaborated hands-on with teammates during architectural debates, design discussions, code reviews, and quality assurance, assessed tradeoffs of major technical decisions, and enforced software development best practices to ensure high-quality code, implemented using Angular, GraphQL, Docker, Java, Javalin, Kafka, Kotlin, Kubernetes, Looker, MongoDB, MySQL, and Spring Boot.
+      Facilitated collaboration leveraging SAFe Agile methodologies to align product vision across cross-functional stakeholders teams, planned product roadmaps, and overcame project challenges to meet critical milestones, achieving an 85\% program increment completion rate.
     }
     \experience{
-      Spearheaded long-term engineering initiatives to transition microservices architecture from Axon Framework CQRS to a scalable Outbox pattern implemented using internal Kotlin SDK, reducing system complexity and service overhead by 25\%.
+      Spearheaded engineering initiatives to migrate microservices architecture from CQRS to a scalable Transactional Outbox pattern implemented using internal Kotlin SDK, reducing system complexity by 25\% while improving developer experience satisfaction by 20\%.
     }
     \experience{
-      Triaged production defects, managed incident resolution with SREs, performed root cause analysis, and actioned monitoring changes in DataDog and Grafana, reducing mean response time for major PagerDuty incidents to less than 30 minutes.
+      Streamlined release management process across four teams by standardizing deployment best practices and implementing thorough change approval processes, ensuring smoother rollouts by minimizing deployment failures and rollback incidents by 50\%.
     }
     \experience{
-      Hired, mentored, and coached engineers at all levels, conducted regular 1:1 meetings, provided actionable performance feedback, aligned role-specific goals with company OKRs, supported team members' career development by growing technical skills and leadership capabilities, and fostered a team culture of continuous improvement.
+      Triaged production defects, managed incident resolution with SREs, performing root cause analysis, and actioned observability changes in DataDog, Grafana, and PagerDuty, reduced mean response time for major after-hours incidents to less than 30 minutes.
+    }
+    \experience{
+      Coached and mentored engineers at various levels, leveraging regular 1:1 meetings to set professional goals and deliver actionable performance feedback, achieving a 100\% manager satisfaction score on quarterly engagement surveys.
+    }
+    \experience{
+      Supported team members’ career development by cultivating technical skills and leadership capabilities, advocated for the promotion of 20\% of direct reports to engineering lead roles, and achieved a 95\% employee retention rate over 3 years.
     }
   \experienceEnd{}
 
@@ -122,10 +131,10 @@
     {Remote}
   \experienceStart{}
     \experience{
-      Designed and implemented infrastructure as code tooling to automate, manage, and provision UKG Pro Coaching \& Development services using Kubernetes and Google Cloud Platform, achieving production-readiness of the first US region.
+      Designed and implemented infrastructure as code (IaC) tooling to automate, manage, and provision UKG Pro Coaching \& Development application using Kubernetes and Google Cloud Platform, deploying 50 services to achieve production-readiness of the first US region.
     }
     \experience{
-      Accelerated product release capabilities by establishing DevOps guardrails for continuous delivery, switched CI/CD branching strategy from Gitflow to trunk-based development, adopted feature flagging via LaunchDarkly SDK, improved change lead time from weeks to days, and increased deployment frequency from quarterly to biweekly.
+      Accelerated product release capabilities by establishing DevOps guardrails for continuous delivery, improved change lead time from weeks to days, and increased deployment frequency from quarterly to biweekly.
     }
   \experienceEnd{}
 
@@ -135,10 +144,10 @@
     {Remote}
   \experienceStart{}
     \experience{
-      Drove initiatives to improve developer knowledge base quality and build a self-service documentation portal as the team scaled from 10 to 25+ distributed engineers spanning multiple time zones, improved time to productivity for onboarding new hires to less than 4 weeks by consolidating technical content on Backstage, Confluence, LucidCharts, and Microsoft SharePoint.
+      Drove initiatives to improve developer knowledge base quality and build a self-service documentation portal as the team scaled from 10 to 25+ distributed engineers spanning multiple time zones, improved time to productivity for onboarding new hires to less than 4 weeks.
     }
     \experience{
-      Coordinated Engineering, Product, Operations, and Quality leads to plan, prioritize, and task Jira Epics to meet functional and non-functional requirements, communicated estimates, issues, and dependencies between stakeholder teams, resulting in a 50\% reduction in integration change failures over two quarters.
+      Coordinated stakeholders to plan, prioritize, and task project to meet requirements, communicating dependencies, estimates, and issues between engineering teams which resulted in a 50\% reduction of integration change failures over two quarters.
     }
   \experienceEnd{}
 
@@ -161,7 +170,7 @@
       Collaborated with Product, Data Scientists, and Data Platform teams to launch an employee retention risk dashboard and ML predictive model trained on UltiPro employment data using Apache Hadoop, NumPy, Pandas, Python, and scikit-learn.
     }
     \experience{
-      Engaged with Product and Engineering stakeholders using Domain-Driven Design approaches to define bounded contexts and aggregates for new UltiPro Payroll and People features, applied 12-Factor App principles to implement 10+ microservices using CQRS and event-sourcing patterns, and reduced system complexity by 30\% through business-aligned domain modeling.
+      Engaged with Product and Engineering stakeholders using Domain-Driven Design approaches to define bounded contexts and aggregates for new UltiPro Payroll and People features, reducing system complexity by 30\% through business-aligned domain modeling.
     }
   \experienceEnd{}
 
@@ -184,7 +193,7 @@
     {2009 --- 2014}
 \subsectionEnd{}
 
-\section{Technical Skills}
+\section{Skills}
 \begin{itemize}[leftmargin=6pt, rightmargin=8pt, label={}]
   \skills{Programming Languages}
     {Java, JavaScript/TypeScript, Kotlin, Python}
