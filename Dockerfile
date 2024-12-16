@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM pandoc/latex:3.5
+FROM pandoc/latex:3.6
 
 RUN addgroup -g 10001 user; adduser -u 10000 --ingroup user --shell /bin/bash --home /home/user --disabled-password user
 
