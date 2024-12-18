@@ -11,7 +11,7 @@ I've maintained my resume in LaTeX since my university days and chose to leverag
 📥 Save a copy: [resume-johnny-tran.pdf](https://github.com/johnnytran0/resume/releases/latest/download/resume-johnny-tran.pdf)
 
 <details open>
-    <summary>🖼️ Preview </summary>
+    <summary>📄 Preview </summary>
     <kbd>
         <p align="center">
             <a href="https://docs.google.com/viewer?url=https://github.com/johnnytran0/resume/releases/latest/download/resume-johnny-tran.pdf" target="_blank">
