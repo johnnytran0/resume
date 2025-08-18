@@ -17,10 +17,10 @@ jobs:
       # To report GitHub Actions status checks
       statuses: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           path: TeX-Live
           ref: svn70897
