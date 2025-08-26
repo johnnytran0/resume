@@ -1,6 +1,6 @@
 # Johnny Tran's Resume
 
-[![CI main](https://github.com/johnnytran0/resume/actions/workflows/ci-main.yml/badge.svg?branch=main)](https://github.com/johnnytran0/resume/actions/workflows/ci-main.yml)
+[![CI main](https://github.com/johnnytran0/resume/actions/workflows/ci-main.yml/badge.svg?branch=main)](https://github.com/johnnytran0/resume/actions/workflows/ci-main.yml) ![Last Commit](https://img.shields.io/github/last-commit/johnnytran0/resume/main)
 
 This GitHub repository automates the customization and compilation of my resume to a PDF using LaTeX and GitHub Actions.
 
