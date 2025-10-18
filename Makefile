@@ -44,13 +44,19 @@ lint:
 		--platform linux/amd64 \
 		-e DEFAULT_BRANCH=main \
 		-e IGNORE_GITIGNORED_FILES=true \
-		-e RUN_LOCAL=true \
-		-e SHELL=/bin/bash \
-		-e VALIDATE_MARKDOWN_PRETTIER: false
 		-e MARKDOWN_CONFIG_FILE=.markdownlint.json \
 		-e NATURAL_LANGUAGE_CONFIG_FILE=.textlintrc.json \
+		-e RUN_LOCAL=true \
+		-e SHELL=/bin/bash \
+		-e VALIDATE_ALL_CODEBASE=true \
+		-e VALIDATE_BIOME_FORMAT=false \
+		-e VALIDATE_BIOME_LINT=false \
+		-e VALIDATE_GIT_COMMITLINT=false \
+		-e VALIDATE_MARKDOWN_PRETTIER=false \
+		-e VALIDATE_PYTHON_RUFF=false \
+		-e YAML_CONFIG_FILE=.yamllint.yml \
 		-v ${PWD}:/tmp/lint \
-		ghcr.io/super-linter/super-linter:slim-v7.1.0
+		ghcr.io/super-linter/super-linter:slim-v8.2.0
 
 output:
 	mkdir -p output
