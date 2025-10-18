@@ -13,12 +13,14 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - run: sudo apt install ghostscript imagemagick
       - name: Remove ImageMagick policy that disallows PDF conversion.
         run: |
           sudo sed -i 's/^.*policy.*coder.*none.*PDF.*//' /etc/ImageMagick-6/policy.xml
       - uses: ./.github/actions/build
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@6da8fa9354ddfdc4aeace5fc48d7f679b5214090
         if: startsWith(github.ref, 'refs/tags/')
         with:
           draft: true

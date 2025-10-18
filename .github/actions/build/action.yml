@@ -19,7 +19,9 @@ runs:
     - name: Move glphytounicode
       shell: bash
       run: |
-        mv "$GITHUB_WORKSPACE/TeX-Live/texk/lcdf-typetools/lcdf-typetools-src/glyphtounicode.tex" "$GITHUB_WORKSPACE/tex"
+        mv \
+        "$GITHUB_WORKSPACE/TeX-Live/texk/lcdf-typetools/lcdf-typetools-src/glyphtounicode.tex" \
+        "$GITHUB_WORKSPACE/tex"
     - uses: xu-cheng/latex-action@v3
       with:
         args: ""
