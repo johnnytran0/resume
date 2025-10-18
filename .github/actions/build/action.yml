@@ -8,7 +8,7 @@ runs:
       shell: bash
       run: |
         echo "SOURCE_DATE_EPOCH=$(git log -1 --no-patch --format=%ct)" >> $GITHUB_ENV
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
       with:
         repository: TeX-Live/texlive-source
         path: TeX-Live
@@ -22,16 +22,16 @@ runs:
         mv \
         "$GITHUB_WORKSPACE/TeX-Live/texk/lcdf-typetools/lcdf-typetools-src/glyphtounicode.tex" \
         "$GITHUB_WORKSPACE/tex"
-    - uses: xu-cheng/latex-action@v3
+    - uses: xu-cheng/latex-action@25080975331dc4fc8e6f1af55788e00f84f51fff
       with:
         args: ""
-        docker_image: ghcr.io/xu-cheng/texlive-full:20240701
+        docker_image: ghcr.io/xu-cheng/texlive-full:20251002
         root_file: tex/resume*.tex
     - name: Convert PDF to PNG
       shell: bash
       run: |
         sudo make output/resume-johnny-tran.png
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
       with:
         name: ${{ github.repository_owner }}-resume-artifact-${{ github.sha }}
         path: |
