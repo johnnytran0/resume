@@ -33,10 +33,16 @@ jobs:
         shell: bash
         run: |
           mv "$GITHUB_WORKSPACE/TeX-Live/texk/lcdf-typetools/lcdf-typetools-src/glyphtounicode.tex" "$GITHUB_WORKSPACE"
-      - uses: super-linter/super-linter/slim@ffde3b2b33b745cb612d787f669ef9442b1339a6
+      - uses: super-linter/super-linter/slim@7bba2eeb89d01dc9bfd93c497477a57e72c83240
         env:
-          VALIDATE_MARKDOWN_PRETTIER: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IGNORE_GITIGNORED_FILES: true
           MARKDOWN_CONFIG_FILE: .markdownlint.json
           NATURAL_LANGUAGE_CONFIG_FILE: .textlintrc.json
-          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_BIOME_FORMAT: false
+          VALIDATE_BIOME_LINT: false
+          VALIDATE_GIT_COMMITLINT: false
+          VALIDATE_MARKDOWN_PRETTIER: false
+          VALIDATE_PYTHON_RUFF: false
+          YAML_CONFIG_FILE: .yamllint.yml
