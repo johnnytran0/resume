@@ -7,11 +7,12 @@ runs:
     - name: Set source date to last commiter date for reproducible builds
       shell: bash
       run: |
-        echo "SOURCE_DATE_EPOCH=$(git log -1 --no-patch --format=%ct)" >> $GITHUB_ENV
+        echo "SOURCE_DATE_EPOCH=$(git log -1 --no-patch --format=%ct)" >> $GITHUB_OUTPUT
     - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
       with:
         repository: TeX-Live/texlive-source
         path: TeX-Live
+        persist-credentials: false
         ref: svn70897
         sparse-checkout: |
           texk/lcdf-typetools/lcdf-typetools-src/glyphtounicode.tex
