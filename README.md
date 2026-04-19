@@ -83,7 +83,7 @@ make lint
 
 ### Application Tracking Systems (ATS)?
 
-Application Tracking Systems (ATS) are a suite of software tools used by HR, recruiters, and hiring managers to track and manage candidates throughout the talent acquisition pipeline. For the greatest visibilty during the hiring process, prioritize having clear and simple formatting to ensure readability and compatibility.
+Application Tracking Systems (ATS) are a suite of software tools used by HR, recruiters, and hiring managers to track and manage candidates throughout the talent acquisition pipeline. For the greatest visibility during the hiring process, prioritize having clear and simple formatting to ensure readability and compatibility.
 
 #### Resume Parser
 

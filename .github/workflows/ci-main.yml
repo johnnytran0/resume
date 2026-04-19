@@ -1,32 +1,46 @@
 ---
 name: CI main
 
-permissions: read-all
+permissions:
+  contents: read
 
 on:
   push:
     branches: [main]
     tags: ["v*"]
 
+env:
+  TEX_FILENAME: ${{ vars.TEX_FILENAME }}
+
 jobs:
   build:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    environment: production
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           persist-credentials: false
-      - run: sudo apt install ghostscript imagemagick
-      - name: Remove ImageMagick policy that disallows PDF conversion.
-        run: |
-          sudo sed -i 's/^.*policy.*coder.*none.*PDF.*//' /etc/ImageMagick-6/policy.xml
-      - uses: ./.github/actions/build
-      - uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe
+      - name: Build LaTex artifacts
+        uses: ./.github/actions/build
+      - name: Validate tag is semver
+        env:
+          TAG_NAME: ${{ github.ref_name }}
         if: startsWith(github.ref, 'refs/tags/')
-        with:
-          draft: true
-          prerelease: true
-          fail_on_unmatched_files: true
-          files: |
-            output/*.pdf
-            output/*.png
-          token: ${{ secrets.GH_TOKEN_RESUME }}
+        run: |
+          if [[ ! "$TAG_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Error: tag '$TAG_NAME' is not valid semver (expected vMAJOR.MINOR.PATCH)"
+            exit 1
+          fi
+      - name: Create tagged release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ github.ref_name }}
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          gh release create \
+            "$TAG_NAME" \
+            --draft \
+            --prerelease \
+            "./output/${TEX_FILENAME}.{pdf,png}"
