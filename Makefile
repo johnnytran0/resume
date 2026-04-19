@@ -12,13 +12,15 @@ tex/glyphtounicode.tex:
 		--directory-prefix=tex/
 
 output/$(TEX_FILENAME).pdf: tex/glyphtounicode.tex
-	${PDFLATEX_ENV} latexmk tex/$(TEX_FILENAME).tex
+	${PDFLATEX_ENV} latexmk tex/resume.tex
+	mv output/resume.pdf output/${TEX_FILENAME}.pdf
 
 brew:
 	brew install ghostscript imagemagick texlive
 
 clean:
-	latexmk -C tex/$(TEX_FILENAME).tex
+	latexmk -C tex/resume.tex
+	rm -f output/$(TEX_FILENAME).pdf
 
 clean-all: clean
 	rm -rf .cache .texlive output
@@ -35,7 +37,7 @@ docker-run:
 		-v ${PWD}:/data \
 		-e HOME=/data \
 		-e ${PDFLATEX_ENV} \
-		pandoc/pdflatex tex/$(TEX_FILENAME).tex
+		pandoc/pdflatex tex/resume.tex
 
 # https://github.com/super-linter/super-linter/issues/5070#issuecomment-1885881566
 # https://github.com/super-linter/super-linter/issues/5070#issuecomment-2058901647
@@ -62,7 +64,7 @@ output:
 	mkdir -p output
 
 output/${TEX_FILENAME}.md: output tex/glyphtounicode.tex
-	pandoc -s --to=plain --wrap=none tex/${TEX_FILENAME}.tex -o output/${TEX_FILENAME}.md
+	pandoc -s --to=plain --wrap=none tex/resume.tex -o output/${TEX_FILENAME}.md
 
 output/${TEX_FILENAME}.png: output output/${TEX_FILENAME}.pdf
 	convert \

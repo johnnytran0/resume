@@ -4,11 +4,17 @@ description: "converts *.tex to *.{pdf,png}"
 runs:
   using: "composite"
   steps:
-    - name: Set source date to last commiter date for reproducible builds
+    - run: sudo apt-get install -y ghostscript imagemagick
+      shell: bash
+    - name: Remove ImageMagick policy that disallows PDF conversion.
+      shell: bash
+      run: |
+        sudo sed -i 's/^.*policy.*coder.*none.*PDF.*//' /etc/ImageMagick-6/policy.xml
+    - name: Set source date to last committer date for reproducible builds
       shell: bash
       run: |
         echo "SOURCE_DATE_EPOCH=$(git log -1 --no-patch --format=%ct)" >> $GITHUB_OUTPUT
-    - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
       with:
         repository: TeX-Live/texlive-source
         path: TeX-Live
@@ -17,25 +23,29 @@ runs:
         sparse-checkout: |
           texk/lcdf-typetools/lcdf-typetools-src/glyphtounicode.tex
         sparse-checkout-cone-mode: false
-    - name: Move glphytounicode
+    - name: Move glyphtounicode
       shell: bash
       run: |
         mv \
         "$GITHUB_WORKSPACE/TeX-Live/texk/lcdf-typetools/lcdf-typetools-src/glyphtounicode.tex" \
         "$GITHUB_WORKSPACE/tex"
-    - uses: xu-cheng/latex-action@25080975331dc4fc8e6f1af55788e00f84f51fff
+    - uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcececc6c1b
       with:
         args: ""
-        docker_image: ghcr.io/xu-cheng/texlive-full:20251002
-        root_file: tex/resume*.tex
+        docker_image: "ghcr.io/xu-cheng/texlive-full:\
+          20260401@sha256:8b4a00b6a17ebe6b96dee107d82f0cb3eb40daf322f1e23809a9be26486963dd"
+        root_file: tex/resume.tex
+    - name: Rename PDF to include full name
+      shell: bash
+      run: sudo mv output/resume.pdf "output/${TEX_FILENAME}.pdf"
     - name: Convert PDF to PNG
       shell: bash
       run: |
-        sudo make output/resume-johnny-tran.png
-    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        sudo make "output/${TEX_FILENAME}.png"
+    - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
       with:
         name: ${{ github.repository_owner }}-resume-artifact-${{ github.sha }}
         path: |
-          output/resume*.pdf
-          output/resume*.png
+          output/${{ env.TEX_FILENAME }}.pdf
+          output/${{ env.TEX_FILENAME }}.png
         if-no-files-found: error
