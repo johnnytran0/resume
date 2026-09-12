@@ -45,4 +45,5 @@ jobs:
           VALIDATE_GIT_COMMITLINT: false
           VALIDATE_MARKDOWN_PRETTIER: false
           VALIDATE_PYTHON_RUFF: false
+          VALIDATE_PYTHON_RUFF_FORMAT: false
           YAML_CONFIG_FILE: .yamllint.yml

@@ -1,0 +1,4 @@
+FROM ghcr.io/super-linter/super-linter:slim-v8.6.0@sha256:05c4b0b5a4680946d972bb6f2557137aa66d043d7da30cd064e4c12463820574
+
+HEALTHCHECK NONE
+USER nobody
