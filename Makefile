@@ -57,6 +57,7 @@ lint:
 		-e VALIDATE_GIT_COMMITLINT=false \
 		-e VALIDATE_MARKDOWN_PRETTIER=false \
 		-e VALIDATE_PYTHON_RUFF=false \
+		-e VALIDATE_PYTHON_RUFF_FORMAT=false \
 		-e YAML_CONFIG_FILE=.yamllint.yml \
 		-v ${PWD}:/tmp/lint \
 		$(SUPER_LINTER_IMAGE)
