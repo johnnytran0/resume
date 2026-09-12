@@ -1,7 +1,8 @@
 #!/usr/bin/make
-SHELL= /bin/sh
-TEX_FILENAME = resume-johnny-tran
 PDFLATEX_ENV = SOURCE_DATE_EPOCH=$$(git log -1 --no-patch --format=%ct)
+SHELL= /bin/sh
+SUPER_LINTER_IMAGE = $(shell sed -n 's/^FROM //p' Dockerfile.lint)
+TEX_FILENAME = resume-johnny-tran
 
 .PHONY: all brew clean clean-all docker docker-build docker-run lint
 
@@ -56,9 +57,10 @@ lint:
 		-e VALIDATE_GIT_COMMITLINT=false \
 		-e VALIDATE_MARKDOWN_PRETTIER=false \
 		-e VALIDATE_PYTHON_RUFF=false \
+		-e VALIDATE_PYTHON_RUFF_FORMAT=false \
 		-e YAML_CONFIG_FILE=.yamllint.yml \
 		-v ${PWD}:/tmp/lint \
-		ghcr.io/super-linter/super-linter:slim-v8.2.0
+		$(SUPER_LINTER_IMAGE)
 
 output:
 	mkdir -p output
